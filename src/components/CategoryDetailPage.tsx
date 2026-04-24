@@ -55,7 +55,7 @@ export const CategoryDetailPage: React.FC<Props> = ({
               className="flex items-center gap-4 flex-1 text-left"
             >
               <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border-2 border-gray-50 dark:border-slate-800 group-hover:scale-110 transition-transform">
-                <img src={m.imageUrl} alt={m.word} className="w-full h-full object-cover" />
+                <img src={m.imageUrl} alt={m.word} className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div>
                 <h4 className="font-black text-gray-900 dark:text-white text-lg">{m.word}</h4>

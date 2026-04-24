@@ -1,0 +1,21 @@
+import { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.mnemonix.app',
+  appName: 'MnemoniX',
+  webDir: 'dist',
+  server: {
+    androidScheme: 'https'
+  },
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 3000,
+      launchAutoHide: true,
+      backgroundColor: "#e67e22",
+      androidSplashResourceName: "splash",
+      androidScaleType: "CENTER_CROP"
+    }
+  }
+};
+
+export default config;

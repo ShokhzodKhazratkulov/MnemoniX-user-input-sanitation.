@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MnemoniX</string>
+    <string name="title_activity_main">MnemoniX</string>
+    <string name="package_name">com.mnemonix.app</string>
+    <string name="custom_url_scheme">com.mnemonix.app</string>
+</resources>

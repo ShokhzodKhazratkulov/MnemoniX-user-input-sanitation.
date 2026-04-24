@@ -484,7 +484,7 @@ export const Flashcards = React.memo(({
                     className="w-full flex items-center gap-4 p-4 bg-gray-50 dark:bg-slate-800/30 border border-gray-100 dark:border-slate-800 rounded-2xl group hover:border-red-500/30 transition-all text-left"
                   >
                     <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 border border-gray-200 dark:border-slate-700">
-                      <img src={m.imageUrl} className="w-full h-full object-cover" alt={m.word} referrerPolicy="no-referrer" />
+                      <img src={m.imageUrl} className="w-full h-full object-cover" alt={m.word} referrerPolicy="no-referrer" loading="lazy" />
                     </div>
                     <div className="flex-1">
                       <h4 className="text-gray-900 dark:text-white font-black text-lg leading-tight">{m.word}</h4>
@@ -745,7 +745,7 @@ export const Flashcards = React.memo(({
           const nextIdx = (currentIndex + i) % filtered.length;
           const mnemonic = filtered[shuffledIndices[nextIdx]];
           return mnemonic?.imageUrl ? (
-            <img key={mnemonic.id} src={mnemonic.imageUrl} referrerPolicy="no-referrer" />
+            <img key={mnemonic.id} src={mnemonic.imageUrl} referrerPolicy="no-referrer" loading="lazy" />
           ) : null;
         })}
       </div>

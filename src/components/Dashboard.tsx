@@ -240,14 +240,6 @@ export const Dashboard = React.memo(({ savedMnemonics, language, onDelete, onNav
           <h2 className="text-5xl font-black text-gray-900 dark:text-white tracking-tight">{t.title}</h2>
           <p className="text-gray-500 dark:text-gray-400 font-medium text-lg">{t.stats}</p>
         </div>
-        
-        <button 
-          onClick={() => onNavigate(AppView.BULK_UPLOAD)}
-          className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-2xl text-gray-600 dark:text-gray-400 font-black text-sm hover:scale-105 transition-all shadow-sm active:scale-95 group"
-        >
-          <Upload size={18} className="group-hover:text-accent transition-colors" />
-          Bulk Upload
-        </button>
       </div>
 
       {/* Stats Grid */}

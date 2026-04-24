@@ -296,7 +296,7 @@ export const Posts = React.memo(({ user, language, theme, viewMode = 'all', onNa
               />
               {newPost.image && (
                 <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-gray-200">
-                  <img src={newPost.image} className="w-full h-full object-cover" />
+                  <img src={newPost.image} className="w-full h-full object-cover" loading="lazy" />
                   <button 
                     onClick={() => setNewPost(prev => ({ ...prev, image: null }))}
                     className="absolute top-0 right-0 bg-black/50 text-white p-0.5 rounded-bl-lg"
@@ -455,7 +455,7 @@ const PostCard = React.memo(({ post, user, theme, t, language, onDelete, onEdit,
           <div className="flex items-center gap-3 min-w-0 flex-1">
             <div className="w-10 h-10 shrink-0 rounded-full bg-gradient-to-br from-accent to-accent-hover flex items-center justify-center text-white font-black text-sm overflow-hidden">
               {post.avatar_url ? (
-                <img src={post.avatar_url} alt={post.username} className="w-full h-full object-cover" />
+                <img src={post.avatar_url} alt={post.username} className="w-full h-full object-cover" loading="lazy" />
               ) : (
                 post.username[0].toUpperCase()
               )}
@@ -589,6 +589,7 @@ const PostCard = React.memo(({ post, user, theme, t, language, onDelete, onEdit,
               alt={post.word}
               className={`w-full h-auto object-cover max-h-80 transition-all duration-700 ${!isImageRevealed ? 'blur-3xl scale-110' : 'blur-0 scale-100'}`}
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
             
             {!isImageRevealed && (

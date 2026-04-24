@@ -455,7 +455,7 @@ export const Profile = React.memo(({ user, savedMnemonics, totalWords, masteredC
                         <div key={m.id} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-2xl border border-transparent hover:border-accent transition-all group">
                           <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0">
-                              <img src={m.imageUrl} alt={m.word} className="w-full h-full object-cover" />
+                              <img src={m.imageUrl} alt={m.word} className="w-full h-full object-cover" loading="lazy" />
                             </div>
                             <div>
                               <h4 className="font-black text-gray-900 dark:text-white">{m.word}</h4>
@@ -475,7 +475,7 @@ export const Profile = React.memo(({ user, savedMnemonics, totalWords, masteredC
                       <div className="relative group">
                         <div className="w-24 h-24 rounded-3xl overflow-hidden bg-accent flex items-center justify-center text-white shadow-xl">
                           {editForm.avatar_url ? (
-                            <img src={editForm.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
+                            <img src={editForm.avatar_url} alt="Avatar" className="w-full h-full object-cover" loading="lazy" />
                           ) : (
                             <UserIcon size={40} />
                           )}

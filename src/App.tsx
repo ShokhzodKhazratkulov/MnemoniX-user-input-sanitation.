@@ -37,22 +37,21 @@ import { decode, decodeAudioData } from './utils/audioUtils';
 import { getStorageUrl } from './services/supabase';
 
 // Components
-import { QuickTour } from './components/QuickTour';
-import { Dashboard } from './components/Dashboard';
-import { Flashcards } from './components/Flashcards';
-import { MnemonicCard } from './components/MnemonicCard';
-import { VoiceMode } from './components/VoiceMode';
-import { Auth } from './components/Auth';
-import { Profile } from './components/Profile';
-import AboutSection from './components/AboutSection';
-import { SearchPage } from './components/SearchPage';
-import { FeedbackModal } from './components/FeedbackModal';
-import { Posts } from './components/Posts';
-import { PracticePartner } from './components/PracticePartner';
-import { CategoriesPage } from './components/CategoriesPage';
-import { CategoryDetailPage } from './components/CategoryDetailPage';
-import { Personalization } from './components/Personalization';
-import { BulkUpload } from './components/BulkUpload';
+const QuickTour = React.lazy(() => import('./components/QuickTour').then(module => ({ default: module.QuickTour })));
+const Dashboard = React.lazy(() => import('./components/Dashboard').then(module => ({ default: module.Dashboard })));
+const Flashcards = React.lazy(() => import('./components/Flashcards').then(module => ({ default: module.Flashcards })));
+const MnemonicCard = React.lazy(() => import('./components/MnemonicCard').then(module => ({ default: module.MnemonicCard })));
+const VoiceMode = React.lazy(() => import('./components/VoiceMode').then(module => ({ default: module.VoiceMode })));
+const Auth = React.lazy(() => import('./components/Auth').then(module => ({ default: module.Auth })));
+const Profile = React.lazy(() => import('./components/Profile').then(module => ({ default: module.Profile })));
+const AboutSection = React.lazy(() => import('./components/AboutSection'));
+const SearchPage = React.lazy(() => import('./components/SearchPage').then(module => ({ default: module.SearchPage })));
+const FeedbackModal = React.lazy(() => import('./components/FeedbackModal').then(module => ({ default: module.FeedbackModal })));
+const Posts = React.lazy(() => import('./components/Posts').then(module => ({ default: module.Posts })));
+const PracticePartner = React.lazy(() => import('./components/PracticePartner').then(module => ({ default: module.PracticePartner })));
+const CategoriesPage = React.lazy(() => import('./components/CategoriesPage').then(module => ({ default: module.CategoriesPage })));
+const CategoryDetailPage = React.lazy(() => import('./components/CategoryDetailPage').then(module => ({ default: module.CategoryDetailPage })));
+const Personalization = React.lazy(() => import('./components/Personalization').then(module => ({ default: module.Personalization })));
 
 import { TRANSLATIONS } from './constants/translations';
 import { Profile as UserProfileType } from './types';
@@ -1145,7 +1144,7 @@ export default function App() {
                   className="w-10 h-10 flex items-center justify-center bg-white/80 dark:bg-primary/80 border border-gray-100 dark:border-white/10 rounded-full text-gray-500 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-all shadow-sm overflow-hidden"
                 >
                   {userProfile?.avatar_url ? (
-                    <img src={userProfile.avatar_url} alt="Profile" className="w-full h-full object-cover" />
+                    <img src={userProfile.avatar_url} alt="Profile" className="w-full h-full object-cover" loading="lazy" />
                   ) : (
                     <UserIcon size={20} />
                   )}
@@ -1193,7 +1192,7 @@ export default function App() {
                         >
                           <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 bg-gray-100 dark:bg-slate-800 flex items-center justify-center">
                             {userProfile?.avatar_url ? (
-                              <img src={userProfile.avatar_url} alt="Profile" className="w-full h-full object-cover" />
+                              <img src={userProfile.avatar_url} alt="Profile" className="w-full h-full object-cover" loading="lazy" />
                             ) : (
                               <UserIcon size={14} />
                             )}
@@ -1222,7 +1221,12 @@ export default function App() {
         )}
 
       <main className={view === AppView.AUTH ? "w-full h-screen overflow-hidden" : "max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-8 pb-24 md:pb-12"}>
-        <AnimatePresence mode="wait">
+        <React.Suspense fallback={
+          <div className="min-h-[60vh] flex items-center justify-center">
+            <Loader2 className="w-10 h-10 text-accent animate-spin" />
+          </div>
+        }>
+          <AnimatePresence mode="wait">
           {view === AppView.AUTH && (
             <motion.div key="auth" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <Auth onClose={() => goBack()} onSuccess={() => { setIsGuest(false); setView(AppView.HOME); }} t={t} />
@@ -1569,18 +1573,8 @@ export default function App() {
               </div>
             </motion.div>
           )}
-
-          {view === AppView.BULK_UPLOAD && (
-            <motion.div key="bulk-upload" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <BulkUpload 
-                onBack={() => setView(AppView.DASHBOARD)} 
-                t={t} 
-                user={user}
-                currentLanguage={contentLanguage}
-              />
-            </motion.div>
-          )}
         </AnimatePresence>
+      </React.Suspense>
       </main>
 
       {/* Floating Practice Button */}

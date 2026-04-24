@@ -11,6 +11,20 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
       },
       plugins: [react(), tailwindcss()],
+      build: {
+        target: 'esnext',
+        minify: 'esbuild',
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom'],
+              'vendor-ui': ['lucide-react', 'motion', 'recharts'],
+              'vendor-utils': ['jspdf', 'jspdf-autotable', '@supabase/supabase-js'],
+            }
+          }
+        },
+        chunkSizeWarningLimit: 1000
+      },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY || env.API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || env.API_KEY)

@@ -115,7 +115,7 @@ export const Auth: React.FC<AuthProps> = ({ onClose, onSuccess, t }) => {
           <div className="flex -space-x-4">
             {[1, 2, 3, 4].map(i => (
               <div key={i} className="w-12 h-12 rounded-full border-4 border-accent bg-accent/40 overflow-hidden">
-                <img src={`https://picsum.photos/seed/user${i}/100/100`} alt="User" referrerPolicy="no-referrer" />
+                <img src={`https://picsum.photos/seed/user${i}/100/100`} alt="User" referrerPolicy="no-referrer" loading="lazy" />
               </div>
             ))}
           </div>

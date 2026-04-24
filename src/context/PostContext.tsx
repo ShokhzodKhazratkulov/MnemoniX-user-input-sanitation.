@@ -318,7 +318,8 @@ export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children
           cache.current[cacheKey] = {
             posts: [mappedPost],
             hasMore: true,
-            page: 0
+            page: 0,
+            timestamp: Date.now()
           };
         }
       }
